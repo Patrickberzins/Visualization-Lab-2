@@ -1,22 +1,33 @@
-// TODO: load the dataset 
+
+let attractions = fetch('../attractions.json')
+  .then(response => response.json())
+  .then(data => {
+		//attractions = data;
+		//console.log('attractions', attractions);
+        return data;
+	});
+
+attractions.then (data => {console.log(data)})
 
 function filterData(category) {
-
-	/* **************************************************
-	 *
-	 * TODO: filter attractions by the selected category
-	 * TODO: filter top 5 attractions
-	 *
-	 * CALL THE FOLLOWING FUNCTION TO RENDER THE BAR-CHART:
-	 *
-	 * renderBarChart(data)
-	 *
-	 * - 'data' must be an array of JSON objects
-	 * - the max. length of 'data' is 5
-	 *
-	 * **************************************************/
-
+    if (category == 'All') {
+        attractions.then (data => {renderBarChart(data.filter(function (e) {
+            return e.Category;}).slice(0,5))}); 
+    }
+    else {
+    attractions.then (data => {renderBarChart(data.filter(function (e) {
+        return e.Category == category;}).slice(0,5))}); 
+    }
 }
 
-// TODO: Define an event listener for the dropdown menu
-//       Call filterData with the selected category
+
+function renderValue (x) {
+    console.log (x.target.value)
+    if (x.target.value != 'all')
+        filterData(x.target.value);
+    else filterData('All');
+}
+
+filterData ('All');
+
+document.getElementById("attraction-category").addEventListener("change", renderValue);
