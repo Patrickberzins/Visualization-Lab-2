@@ -1,5 +1,5 @@
 
-let attractions = fetch('../attractions.json')
+let attractions = fetch('./attractions.json')
   .then(response => response.json())
   .then(data => {
 		//attractions = data;
