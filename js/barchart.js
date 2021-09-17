@@ -11,7 +11,7 @@ let margin = { top: 40, right: 20, bottom: 40, left: 90 },
     margin.right,
   height = 400 - margin.top - margin.bottom;
 
-width = width > 600 ? 600 : width;
+width = width > 500 ? 500 : width;
 
 let svg = d3
   .select("#chart-area")
